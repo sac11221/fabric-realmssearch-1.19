@@ -1,0 +1,3 @@
+accessWidener	v1 named
+accessible    class    net/minecraft/client/realms/gui/screen/RealmsSelectWorldTemplateScreen$WorldTemplateObjectSelectionList
+accessible method net/minecraft/client/realms/gui/screen/RealmsScreen row (I)I

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "realmssearch",
+  "version": "${version}",
+
+  "name": "Realms Minigame Search",
+  "description": "Adds a search bar into the Realms Minigame selection screen.",
+  "accessWidener" : "realmssearch.accessWidener",
+  "authors": [
+    "sac11221"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/realmssearch/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+    ]
+  },
+  "mixins": [
+    "realmssearch.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.17",
+    "fabric-api": "*",
+    "minecraft": "~1.19.4",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
