@@ -10,8 +10,8 @@
     "sac11221"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/realms-minigame-search",
+    "sources": "https://github.com/sac11221/fabric-example-mod-1.19"
   },
 
   "license": "CC0-1.0",
