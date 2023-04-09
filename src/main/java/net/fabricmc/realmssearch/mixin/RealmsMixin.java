@@ -43,6 +43,7 @@ public abstract class RealmsMixin extends Screen {
     private boolean isItAuthorSearch;
     private boolean startChecking;
     private boolean hasSearched;
+    private int updatedCurrentSize;
     @Shadow int clicks;
 
     protected RealmsMixin(Text title, RealmsServer.WorldType worldType) {
@@ -134,27 +135,21 @@ public abstract class RealmsMixin extends Screen {
         if(!(query.equalsIgnoreCase(""))){
             int currentSize = this.templateList.children().size();
             if(!(query.startsWith("@"))){
-                for(int j = 0; j<150; j++){
-                    for (int i = 0; i < currentSize; i++) {
-                        if (!(this.templateList.getItem(i).name.toLowerCase().contains(query.toLowerCase()))) {
-                            this.templateList.children().remove(i);
-                            currentSize--;
-                        }else{
-                            minigamesFound++;
-                        }
+                for (int i = currentSize - 1; i >= 0; i--) {
+                    if (!(this.templateList.getItem(i).name.toLowerCase().contains(query.toLowerCase()))) {
+                        this.templateList.children().remove(i);
+                        currentSize--;
+                        this.updatedCurrentSize=currentSize;
                     }
                 }
             }else{
                 this.isItAuthorSearch=true;
                 query=query.substring(1);
-                for(int j = 0; j<150; j++){
-                    for (int i = 0; i < currentSize; i++) {
-                        if (!(this.templateList.getItem(i).author.toLowerCase().contains(query.toLowerCase()))) {
-                            this.templateList.children().remove(i);
-                            currentSize--;
-                        }else{
-                            minigamesFound++;
-                        }
+                for (int i = currentSize - 1; i >= 0; i--) {
+                    if (!(this.templateList.getItem(i).author.toLowerCase().contains(query.toLowerCase()))) {
+                        this.templateList.children().remove(i);
+                        currentSize--;
+                        this.updatedCurrentSize=currentSize;
                     }
                 }
             }
@@ -167,15 +162,15 @@ public abstract class RealmsMixin extends Screen {
         if((!(query.equalsIgnoreCase("")))){
             if(!isItAuthorSearch) {
                 if (minigamesFound > 0) {
-                    this.minigamesString = Text.translatable((minigamesFound / 150 + 1) + " minigame(s) found matching search: " + '"' + query + '"');
+                    this.minigamesString = Text.translatable(this.updatedCurrentSize + " minigame(s) found matching search: " + '"' + query + '"');
                 } else {
-                    this.minigamesString = Text.translatable(minigamesFound + " minigame(s) found matching search: " + '"' + query + '"');
+                    this.minigamesString = Text.translatable(this.updatedCurrentSize + " minigame(s) found matching search: " + '"' + query + '"');
                 }
             }else{
                 if (minigamesFound > 0) {
-                    this.minigamesString = Text.translatable((minigamesFound / 150 + 1) + " minigame(s) found matching author search: " + '"' + query + '"');
+                    this.minigamesString = Text.translatable(this.updatedCurrentSize + " minigame(s) found matching author search: " + '"' + query + '"');
                 } else {
-                    this.minigamesString = Text.translatable(minigamesFound + " minigame(s) found matching author search: " + '"' + query + '"');
+                    this.minigamesString = Text.translatable(this.updatedCurrentSize + " minigame(s) found matching author search: " + '"' + query + '"');
                 }
             }
             this.minigamesString2 = Text.translatable("");
