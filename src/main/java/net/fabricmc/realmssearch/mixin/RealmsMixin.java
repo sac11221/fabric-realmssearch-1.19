@@ -12,6 +12,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,6 +23,7 @@ import static net.minecraft.client.realms.gui.screen.RealmsScreen.row;
 
 @Mixin (RealmsSelectWorldTemplateScreen.class)
 public abstract class RealmsMixin extends Screen {
+    @Shadow @Final private static Logger LOGGER;
     @Shadow private RealmsSelectWorldTemplateScreen.WorldTemplateObjectSelectionList templateList;
     @Shadow private ButtonWidget trailerButton;
     @Shadow private ButtonWidget selectButton;
@@ -116,7 +119,7 @@ public abstract class RealmsMixin extends Screen {
         }
         try{
             if (startChecking && !hasSearched) {
-                if (this.templateList.getItem(this.templateList.children().size() - 1).id.equalsIgnoreCase("24") && !(this.searchBar.getText().equalsIgnoreCase(""))) {
+                if (this.templateList.getItem(this.templateList.children().size() - 1).id.equalsIgnoreCase("259") && !(this.searchBar.getText().equalsIgnoreCase(""))) {
                     this.confirmSearchButton.active = true;
                 }
                 if (this.searchBar.getText().equalsIgnoreCase("")) {
